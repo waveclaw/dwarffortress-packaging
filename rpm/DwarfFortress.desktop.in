@@ -1,0 +1,20 @@
+[Desktop Entry]
+Version=@VERSION@
+Name=Dwarf Fortress
+Type=Application
+Comment=Slaves to Amarok II: Dwarf Fortress
+Terminal=false
+Exec=@DESTDIR@/bin/dwarffortress
+Icon=DwarfFortress
+Categories=Games
+#
+# Desktop File for installing DwarfFortress per XDG Open Standards
+#
+# Copyright (c) 2013-2015 Jeremiah Powell <waveclaw@waveclaw.net>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. 
+# The license for this file, and modifications and additions to the
+# file are Apache 2.0 per in LICENSE.md.
+#

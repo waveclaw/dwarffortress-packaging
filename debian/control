@@ -1,0 +1,21 @@
+Source: DwarfFortress
+Maintainer: Jeremiah Powell <waveclaw@waveclaw.net>
+Section: games 
+Priority: optional
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 9)
+
+Package: DwarfFortress 
+Version: 0.42.03
+Priority: optional
+Architecture: i386
+Depends: ${shlibs:Depends}, ${misc:Depends} 
+Maintainer: Jeremiah Powell <waveclaw@waveclaw.net>
+Description:
+ Slaves to Amarok II: God of Blood - Chapter II: Dwarf Fortress
+
+ From https://www.bay12games.com/dwarves/features.html
+
+  Dwarf Fortress is a single-player fantasy game. You can control a dwarven outpost or an adventurer in a randomly generated, persistent world.
+
+  Slaves to Armok: God of Blood Chapter II: Dwarf Fortress Copyright (C) 2002-2014 by Tarn Adams.

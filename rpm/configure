@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# simple config file for installing DwarfFortress using Linux Stanards Base locations
+#
+# Copyright (c) 2013-2015 Jeremiah Powell <waveclaw@waveclaw.net>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. 
+# The license for this file, and modifications and additions to the
+# file are Apache 2.0 per in LICENSE.md.
+#
+# Does nothing at this time
+true

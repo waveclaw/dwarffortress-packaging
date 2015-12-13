@@ -1,0 +1,34 @@
+diff -r -u df_linux.orig/data/init/init.txt df_linux/data/init/init.txt
+--- df_linux.orig/data/init/init.txt	2015-12-12 15:13:14.000000000 -0600
++++ df_linux/data/init/init.txt	2015-12-12 21:05:19.676887708 -0600
+@@ -27,7 +27,7 @@
+ 
+ [WINDOWEDX:80]
+ [WINDOWEDY:25]
+-[FONT:curses_640x300.png]
++[FONT:curses_640x300.bmp]
+ 
+ You may disable window resizing if you wish.
+ [RESIZABLE:YES]
+@@ -36,7 +36,7 @@
+ 
+ [FULLSCREENX:0]
+ [FULLSCREENY:0]
+-[FULLFONT:curses_800x600.png]
++[FULLFONT:curses_800x600.bmp]
+ 
+ If this is set to NO, tiles will be stretched to fit the screen if there is a resolution mismatch.
+ If this is set to YES, the tiles will not be stretched, but rather the game view will be centralized, surrounded by black space.  Tiles that are too large will always be compressed rather than running off the screen.
+@@ -48,10 +48,10 @@
+ [GRAPHICS:NO]
+ [GRAPHICS_WINDOWEDX:0]
+ [GRAPHICS_WINDOWEDY:0]
+-[GRAPHICS_FONT:curses_square_16x16.png]
++[GRAPHICS_FONT:curses_square_16x16.bmp]
+ [GRAPHICS_FULLSCREENX:0]
+ [GRAPHICS_FULLSCREENY:0]
+-[GRAPHICS_FULLFONT:curses_square_16x16.png]
++[GRAPHICS_FULLFONT:curses_square_16x16.bmp]
+ [GRAPHICS_BLACK_SPACE:YES]
+ 
+ These settings can have a significant impact on frame rate, especially for people that have slow frame rates on the title screen.  Available modes are 2D, 2DSW, 2DASYNC, STANDARD, PARTIAL:<number>, ACCUM_BUFFER, FRAME_BUFFER and VBO. The number after PARTIAL refers to how many frames it will redo a printed tile before skipping it, so you might try increasing it a bit if you have flickering when PARTIAL is set.  Please note that any of these combinations might cause frame rates to drop significantly or cause unpleasant side effects like flickering.

@@ -1,0 +1,140 @@
+#!/bin/sh
+#
+############################################################################
+# TITLE       : Yet Another Dwarf Fortress Launcher Script (YADFLS)
+# PROJECT     : Games
+# ENGINEER    : Jeremaiah D. Powell <waveclaw@waveclaw.net>
+# PROGRAM     : Slaves to Amarok II: Dwarf Fortress
+# FILE        : dwarffortress 
+# CREATED     : 06-AUG-2014 JDPOWELL
+# DESCRIPTION : SH Shell script to launch the game Dwarf Fortress
+# ASSUMPTIONS : Familiarity with Linux
+############################################################################
+#                          RELEASE LISCENSE		 
+#
+# 	YADFLS Copyright 2013-2015 Jeremiah D. Powell. Distributed under
+#   the Apache 2.0 license.
+#
+#   See LICENSE.md for more deail.
+# 									 
+# 	Dwarf Fortress is Copyright 2006-2015 Tarn Adams, Bay12 Games.
+#									 
+#  Current version : Ver:0.42.03
+#  Bugs: https://github.com/waveclaw/dwarffortress-packaging/issues
+############################################################################
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/sbin
+# settings from install
+DESTDIR=@DESTDIR@
+VER=@VERSION@
+BINDIR=@BINDIR@
+DATA=@DATA@
+# derivd data
+DATADIR=$HOME/.local/share/DwarfFortress/$VER
+# blanked flags
+GENERATE=
+CENTERED=
+PRELINK=
+ 
+usage() {
+echo 
+echo "Usage: `basename $0` [OPTIONS]"
+echo
+echo "Slaves to Amarok II: Dwarf Fortress Linux run script."
+echo
+cat <<EOU
+ -c,--center                                      Center the screen
+ -d,--datadir <datadir>                           Give alternate datadir
+                              (default ~/.local/share/DwarfFortress/${VER})
+ -gen <id number> <seed> <world gen param title>  Headless world generation
+ -h,--help                                        This help text
+ -z,--libz                                        Preload 32-bit libz
+EOU
+echo
+echo "See $DESTDIR/share/doc/DwarfFortress/${VER}/readme.txt"
+}
+
+#find options
+while [ 0 -lt $# ]
+do
+case "$1" in 
+ -c,--center) shift;
+  CENTERED=1
+  ;;
+ -d,--datadir) shift;
+  DATADIR="$1"
+	shift;
+	;;
+ -gen) shift; 
+	id="$1"
+  shift
+  seed="$1"
+	shift;
+  title="$1"
+  shift;
+  GENERATE="-gen $id $seed $title"
+     ;;
+ -z,--libz)
+   PRELINK=1
+   ;;
+ -h)
+  usage
+  exit 0
+  ;;
+ *)
+  usage
+  exit 1
+  ;;
+esac
+done
+
+gohome() {
+cd $ORIGIN
+exit 0
+}
+ORIGIN=$PWD
+trap gohome 1 2 3 4 5 6 7
+
+# require the data directory be populated
+if [ -d "${DATADIR}" -a "${DATA}" \!= "${DATADIR}" ]
+then
+  :
+else
+  mkdir -p "${DATADIR}"
+  cp -r "${DATA}"/* "${DATADIR}"
+  if [ $? -ne 0 ]
+  then
+    echo "Unable to copy data directory!"
+    exit 255
+  fi
+fi
+
+cd "${DATADIR}"
+
+# Work around for bug in Debian/Ubuntu SDL patch.
+SDL_DISABLE_LOCK_KEYS=1 
+export SDL_DISABLE_LOCK_KEYS
+
+# Centre the screen.  Messes up resizing.
+if [ " $CENTERED" == " " ]
+then 
+  :
+else
+SDL_VIDEO_CENTERED=1 
+export SDL_VIDEO_CENTERED
+fi
+# should zlib be prelinked?
+
+if [ " $PRELINK" == " " ]
+then
+LD_PRELOAD=
+else
+LD=$( find /usr/lib -name libz.so | head -1 )
+if [ -f "$LD" -o -h "$LD" ]
+then
+LD_PRELOAD=$LD
+export LD_PRELOAD
+fi
+fi
+
+$BINDIR/Dwarf_Fortress $GENERATE
+
