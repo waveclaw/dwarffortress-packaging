@@ -24,9 +24,17 @@ Ubuntu, Kubuntu or Knoppix.
 
 __TODO__: Finish the Debian Vanilla Package.
 
-## Licensing
+## Licensing and Useage
 
-Since the 
+Since the game itself is not free or open source actual packages cannot
+legally be built by a maintainer or included in a distribution of software.
+
+End users are free to build their own packages.  These example files are
+provided for use.
+
+As [Bay12Games](http://bay12games.com) provides their games free of charge
+and are very friendly to the developer community, please consider
+supporting them.
 
 ## Alternatives
 
@@ -37,7 +45,7 @@ The included start script is designed to keep savegames in
 $HOME/.local/share/DwarfFortress/$DF\_VERSION/.  Libraries for the game
 are also rellocated per the Linux Standards Base.
 
-Lazy Newb Pack, DFHack and other tools will require modification to use these
+Lazy Newb Pack, DFHack and other tools require modification to use these
 changes for savegames, new tilesets and customized RAWS.
 
 ## Notes
@@ -49,3 +57,12 @@ applications and does have to make two changes to the game.
 * As of the 0.42.03 alpha release these application script takes care to handle the problematic libz library binding.  
 
 If you are an application developer remember to do NOT bind your libraries staically on Linux if you can help it.
+
+## Contributing
+
+The packaging materials are Apache 2.0 licenses. 
+
+Bug reports are welcome.  Patches more welcome but not expected or required. 
+
+Complaints are less welcome, but no software is perfect.  Do let us know if it
+does burn your house down, set you or the wife/hustband/boyfriend/girlfriend/cat/dog/hamster fire.
