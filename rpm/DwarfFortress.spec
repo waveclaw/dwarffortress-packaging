@@ -1,22 +1,6 @@
-#
-# spec file for package dwarffortress
-#
-# Copyright (c) 2013-2015 Jeremiah Powell <waveclaw@waveclaw.net>
-#
-# All modifications and additions to the file contributed by third parties
-# remain the property of their copyright owners, unless otherwise agreed
-# upon. 
-# The license for this file, and modifications and additions to the
-# file are Apache 2.0 per in LICENSE.md.
-#
-# Please submit bugfixes or comments via 
-# https://github.com/waveclaw/dwarffortress-packaging/issues
-#
-#
-
 %define name DwarfFortress 
-%define version 0.42.03
-%define release 2
+%define version 0.43.03
+%define release 1
 %define prefix /usr
 
 Summary: Slaves to Amarok II: God of Blood - Chapter II: Dwarf Fortress
@@ -28,24 +12,21 @@ License: All rights reserved.  Copyright (C) 2002-2015 by Tarn Adams.
 #BuildArch: x86_64
 BuildRoot: %{_builddir}
 BuildRequires: make sed tar coreutils
-BuildRequires: /usr/bin/xxd
 URL: http://www.bay12games.com/dwarves/
 Distribution: openSUSE 42.1
 Vendor: Bay12Games (http://bay12games.com/dwarves)
 #Packager: Waveclaw.net Buildteam
 Prefix: %{prefix}
 # http://www.bay12games.com/dwarves/df_42_03_linux.tar.bz2
-Source0: df_42_03_linux.tar.bz2
-# These binaries are proprietary
-NoSource: 0
-# These are part of the package
+Source0: df_43_03_linux.tar.bz2
 Source1: configure
-Source2: DwarfFortress.desktop.in
-Source3: dwarffortress.in
-Source4: DwarfFortress.png
-Source5: Makefile
+Source2: Makefile
+Source3: DwarfFortress.desktop.in  
+Source4: dwarffortress.in  
+Source5: DwarfFortress.png 
 Patch0: df_bad_libgraphics.patch
 Patch1: xxd-Dwarf_Fortress.patch
+NoSource: 0
 Provides: %{name}-32bit
 Requires: %{name}-libs %{name}-data
 
@@ -54,7 +35,7 @@ From https://www.bay12games.com/dwarves/features.html
 
 Dwarf Fortress is a single-player fantasy game. You can control a dwarven outpost or an adventurer in a randomly generated, persistent world.
 
-Slaves to Armok: God of Blood Chapter II: Dwarf Fortress Copyright (C) 2002-2014 by Tarn Adams.
+Slaves to Armok: God of Blood Chapter II: Dwarf Fortress Copyright (C) 2002-2016 by Tarn Adams.
 FMOD Sound System Copyright (C) 1994-2006 Firelight Technologyes PTy, Ltd.
 Simple DirectMedia Layer, SDL_Image, SDL_ttf Copytight (C) 1997-2006 Sam Lantiga.
 FreeType fonts Copyright (C) 2007 The FreeType Project.
@@ -64,18 +45,18 @@ rm -rf %{_builddir}
 mkdir %{_builddir}
 
 %setup -q -n df_linux
-cp %{SOURCE1} ./
-cp %{SOURCE2} ./
-cp %{SOURCE3} ./
-cp %{SOURCE4} ./
-cp %{SOURCE5} ./
+tar xzf %{SOURCE0}
+cp %{SOURCE1} df_linux/
+cp %{SOURCE2} df_linux/
+cp %{SOURCE3} df_linux/
+cp %{SOURCE4} df_linux/
+cp %{SOURCE5} df_linux/
 
 #
 # START PATCHES - if ToadyOne ever fixes
 #  http://www.bay12games.com/dwarves/mantisbt/view.php?id=2688
 # then delete all the patches, this whole secion condences to just 'build'
 #
-
 
 # patch from
 #  tar xjf SOURCE0
@@ -156,6 +137,9 @@ Dwarf Fortress source files provided for license compatibility.
 /usr/src/DwarfFortress/%{version}/*
 
 %changelog
+
+* Fri Jun 10 2016 Jeremiah Powell <waveclaw@waveclaw.net> 0.43.03-1
+- Update for Dwarf Fortress 0.43.03
 
 * Sat Dec 12 2015 Jeremiah Powell <waveclaw@waveclaw.net> 0.42.03-1
 - Update for Dwarf Fortress 0.42.03

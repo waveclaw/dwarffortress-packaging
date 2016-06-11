@@ -50,8 +50,8 @@ changes for savegames, new tilesets and customized RAWS.
 
 ## Notes
 
-The package tries to re-organize vanilla Dwarf Fortress into a regular Linux
-applications and does have to make two changes to the game.
+The package tries to re-organize vanilla Dwarf Fortress into a regular (Linux Standards Base comliant) Linux
+application and does have to make two changes to the game.
 
 * As of the 0.42.03 alpha release these packages have to patch the binaries in the game to replace Portable Network Graphics (PNG) images with bitmap (bmp) images.
 * As of the 0.42.03 alpha release these application script takes care to handle the problematic libz library binding.  
