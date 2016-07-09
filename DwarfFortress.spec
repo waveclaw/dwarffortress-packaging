@@ -1,5 +1,5 @@
 %define name DwarfFortress
-%define version 0.43.03
+%define version 0.43.05
 %define release 1
 %define prefix /usr
 
@@ -24,8 +24,8 @@ Source2: Makefile
 Source3: DwarfFortress.desktop.in
 Source4: dwarffortress.in
 Source5: DwarfFortress.png
-Patch0: df_bad_libgraphics.patch
-Patch1: xxd-Dwarf_Fortress.patch
+#Patch0: df_bad_libgraphics.patch
+#Patch1: xxd-Dwarf_Fortress.patch
 NoSource: 0
 Provides: %{name}-32bit
 Requires: %{name}-libs %{name}-data
@@ -62,20 +62,17 @@ cp %{SOURCE5} ./
 #  cp -rp df_linux{,.orig}
 # sed -e 's#png#bmp#g' df_linux/data/init/init.txt > t;mv t df_linux/data/init/init.txt
 # diff -r -u df_linux.orig df_linux  > df_bad_libgraphics.patch
-%patch -P 0 -p 1
+#%patch -P 0 -p 1
 
+%build
 # To make an xxd patch do
 # cp df_linux/libs/Dwarf_Fortress{,.orig}
 # sed -e 's#mouse.png#mouse.bmp#g' df_linux/libs/Dwarf_Fortress.orig > Dwarf_Fortress
 # xxd df_linux/libs/Dwarf_Fortress.orig > orig.txt
 # xxd Dwarf_Fortress > patched.txt
 # diff orig.txt patched.txt | grep '>' | cut -d ' ' -f 2- > xxd-Dwarf_Fortress.patch
-%build
-xxd -r %PATCH1 libs/Dwarf_Fortress
+#xxd -r %PATCH1 libs/Dwarf_Fortress
 
-#
-# END PATCHES
-#
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} PREFIX=/%{prefix} VERSION=%{version} install
